@@ -16,9 +16,9 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Encrypted password is empty']
     },
-    portalKey: {
+    profileImage: {
       type: String,
-      required: [true, 'Key is needed! Ask Nizar!']
+      default: '/images/default.jpg'
     }
   },
   {
