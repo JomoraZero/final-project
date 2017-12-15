@@ -46,8 +46,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+//ROUTERS -------------------------------------------
 const index = require('./routes/index');
 app.use('/', index);
+
+const userApi = require('./routes/user-api-router');
+app.use('/api', userApi);
+//END ROUTES --------------------------------------------
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -55,6 +61,7 @@ app.use((req, res, next) => {
   err.status = 404;
   next(err);
 });
+
 
 // error handler
 app.use((err, req, res, next) => {

@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/signup', (req, res, next) => {
   if (req.body.password === undefined ||
-      req.body.password.length < 16 ||
+      req.body.password.length < 4 ||
       req.body.password.match(/[^a-z0-9]/i) === null) {
       res.status(400).json({error: 'Password invalid'});
       return;

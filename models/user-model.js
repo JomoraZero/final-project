@@ -15,10 +15,6 @@ const userSchema = new Schema(
     encryptedPassword: {
       type: String,
       required: [true, 'Encrypted password is empty']
-    },
-    profileImage: {
-      type: String,
-      default: '/images/default.jpg'
     }
   },
   {

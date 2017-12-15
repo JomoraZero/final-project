@@ -6,7 +6,7 @@ const postSchema = new Schema(
   {
     albumTitle: {
       type: String,
-      required: [true, 'Please give us an album title']
+      required: [true, 'Please give us an album title.']
     },
     artist: {
       type: String,
@@ -20,14 +20,23 @@ const postSchema = new Schema(
       type: String,
       required: [true, 'What is the last track on the album?']
     },
-    imageUrl: {
+    albumCoverUrl: {
       type: String,
       default: '/images/default-album.jpg'
+    },
+    genre: {
+      type: String,
+      required: [true, 'Genre is required.']
+    },
+    likes: {
+      type: number,
+      default: 0,
+      ref: 'User'
     },
     owner: {
       type: Schema.Types.ObjectId,
       require: true,
-      ref: "User"
+      ref: 'User'
     }
   },
   {
