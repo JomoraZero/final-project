@@ -55,23 +55,9 @@ const userApi = require('./routes/user-api-router');
 app.use('/api', userApi);
 //END ROUTES --------------------------------------------
 
-// catch 404 and forward to error handler
+//send the Angular HTML if no Express routes match
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-
-// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 module.exports = app;
