@@ -53,15 +53,12 @@ router.post("/albums", (req, res, next) => {
 }); // POST /albums
 
 router.get("/albums/:id", (req, res, next) => {
-  if (req.user === undefined) {
-    res.status(400).json({ error: "Not logged in" });
-    return;
-  }
+
   Post.findById(req.params.id)
   .populate('owner')
   .then((postFromDb) => {
     if (postFromDb === null) {
-      res.status(404).json({ error: "Drink not found" });
+      res.status(404).json({ error: "Album not found" });
     }
     else{
       res.status(200).json(postFromDb);
