@@ -16,23 +16,26 @@ const postSchema = new Schema(
       type: String,
       required: [true, 'What is the first track on the album?']
     },
+    firstTrackSpotify: {
+      type: String
+    },
     lastTrack: {
       type: String,
       required: [true, 'What is the last track on the album?']
     },
-    albumCoverUrl: {
-      type: String,
-      default: '/images/default-album.jpg'
+    lastTrackSpotify: {
+      type: String
     },
     genre: {
       type: String,
       required: [true, 'Genre is required.']
     },
-    likes: {
-      type: number,
-      default: 0,
-      ref: 'User'
-    },
+    likes: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'User'
+        }
+    ],
     owner: {
       type: Schema.Types.ObjectId,
       require: true,

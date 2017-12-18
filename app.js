@@ -53,6 +53,9 @@ app.use('/', index);
 
 const userApi = require('./routes/user-api-router');
 app.use('/api', userApi);
+
+const postApi = require('./routes/post-api-router');
+app.use('/api', postApi);
 //END ROUTES --------------------------------------------
 
 //send the Angular HTML if no Express routes match
