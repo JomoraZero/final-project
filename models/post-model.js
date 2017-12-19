@@ -30,12 +30,6 @@ const postSchema = new Schema(
       type: String,
       required: [true, 'Genre is required.']
     },
-    likes: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'User'
-        }
-    ],
     owner: {
       type: Schema.Types.ObjectId,
       require: true,

@@ -4,6 +4,21 @@ const Post = require("../models/post-model");
 
 const router = express.Router();
 
+router.get("/favorites", (req,res,next) =>{
+  Post
+  .find({_id:req.user.favorites})
+  .exec()
+  .then((postResults) => {
+    res.status(200).json(postResults);
+  })
+  .catch((err) => {
+    console.log("GET/favorites ERROR!!");
+    console.log(err);
+
+    res.status(500).json({ error: "My Post list database error!" });
+  });
+}); // GET /favorites
+
 router.get("/albums", (req, res, next) => {
   Post
   .find()

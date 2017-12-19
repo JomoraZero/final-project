@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/signup', (req, res, next) => {
   if (req.body.password === undefined ||
-      req.body.password.length < 4 ||
+      req.body.password.length < 6 ||
       req.body.password.match(/[^a-z0-9]/i) === null) {
       res.status(400).json({error: 'Password invalid'});
       return;
@@ -110,6 +110,44 @@ router.get('/checklogin', (req, res, next) => {
       userInfo: null
     });
     }
+});
+
+router.put("/albums/:id/add", (req, res, next) => {
+  req.user.favorites.push( req.params.id );
+  req.user.save()
+  .then(() => {
+    res.status(200).json(req.user);
+  })
+  .catch((err) => {
+    console.log("PUT/favorites/:id/add ERROR!!");
+    console.log(err);
+
+    if (err.errors) {
+      res.status(400).json(err.errors);
+    }
+    else {
+      res.status(500).json({ error: "My Favorites update database error!" });
+    }
+  });
+}); // PUT /albums/:id/add
+
+router.delete("/albums/:id/delete", (req, res, next) => {
+  req.user.favorites.pull(req.params.id);
+  req.user.save()
+  .then(() => {
+    res.status(200).json(req.user);
+  })
+  .catch((err) => {
+    console.log("DELETE/albums/:id/delete ERROR!!");
+    console.log(err);
+
+    if (err.errors) {
+      res.status(400).json(err.errors);
+    }
+    else {
+      res.status(500).json({ error: "My Favorites remove drink database error!" });
+    }
+  });
 });
 
 module.exports = router;

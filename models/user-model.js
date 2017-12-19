@@ -15,7 +15,10 @@ const userSchema = new Schema(
     encryptedPassword: {
       type: String,
       required: [true, 'Encrypted password is empty']
-    }
+    },
+    favorites: [
+        { type: Schema.Types.ObjectId }
+    ]
   },
   {
   timestamps: true
